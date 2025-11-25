@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing npm dependencies..."
+      - npm install
+
+  build:
+    commands:
+      - echo "Build step (if you had a build) - preparing artifact"
+      - mkdir -p output
+      - zip -r output/app.zip . -x "node_modules/*" ".git/*"
+
+artifacts:
+  files:
+    - output/app.zip
+  discard-paths: yes
